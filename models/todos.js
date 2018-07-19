@@ -8,10 +8,20 @@ module.exports = {
   },
   // ==== COMPLETE THE FOLLOWING (SEE `model.js` TEST SPEC) =====
   listPeople: function () {
-    // returns an array of all people for whom tasks exist
+    return Object.keys(tasks);
   },
   add: function (name, task) {
-    // saves a task for a given person
+    if (!task.complete) task.complete = false;
+    if (tasks[name]) tasks[name].push(task);
+    else tasks[name] = [task];
+  },
+  list: function (name) {
+    return tasks[name];
+  },
+  complete: function (name, taskIndex) {
+    tasks[name][taskIndex].complete = true;
+  },
+  remove: function(name, taskIndex) {
+    tasks[name].splice(taskIndex, 1);
   }
-  // etc.
 };
